@@ -47,10 +47,18 @@ public class Player : MonoBehaviour
         PlayerPrefs.SetString("Score", "Score : " + ScoreValue.ToString());
         _scoreText.text = PlayerPrefs.GetString("Score");
         Instantiate(_wallPrefab, _scenario.FirstWalls[0], Quaternion.identity);
+
+
+        // si le score = 8 alors on passe au niveau suivant
         if (ScoreValue == 8)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+
+        // on récup le score pour le niveau suivant
+        _scenario.Score = ScoreValue;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
     }
 
 }
