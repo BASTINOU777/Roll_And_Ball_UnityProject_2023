@@ -7,9 +7,10 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class ScenarioData : ScriptableObject
 {
-
+   
     public Vector3[] FirstWalls;
     public int Score;
+
 
     public void OnEnable()
     {

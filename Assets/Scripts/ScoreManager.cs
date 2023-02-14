@@ -7,20 +7,20 @@ public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
 
-    // affiche le score 
+   
 
     private void OnEnable()
     {
     
     }
 
-    // désactive le score 
+    
     private void OnDisable()
     {
       
     }
 
-// Score à jour 
+   // Score  mis à jour 
 
      private void UpdateScore(int score)
     {

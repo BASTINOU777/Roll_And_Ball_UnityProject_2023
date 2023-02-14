@@ -51,6 +51,9 @@ public class Player : MonoBehaviour
         {
             UpdateScore();
             Destroy(collision.gameObject);
+            //j'instancie une position random à mon game object du mur (_wallPrefb)
+            Vector3 position = new Vector3(Random.Range(-8f, 8f),0f, Random.Range(-7f, 7f));
+            Instantiate(_wallPrefab, position, Quaternion.identity);
         }
     }
     private void UpdateScore()
@@ -58,8 +61,6 @@ public class Player : MonoBehaviour
         ScoreValue++;
         PlayerPrefs.SetString("Score", "Score : " + ScoreValue.ToString());
         _scoreText.text = PlayerPrefs.GetString("Score");
-        Instantiate(_wallPrefab, _scenario.FirstWalls[0], Quaternion.identity);
-
 
         // si le score = 8 alors on change de scène ( niveau suivant )
         if (ScoreValue == 8)
