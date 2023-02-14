@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private TMP_Text _scoreText;
     [SerializeField] private GameObject _wallPrefab;
     [SerializeField] private ScenarioData _scenario;
-
+    
 
     void Start()
     {
@@ -54,20 +54,21 @@ public class Player : MonoBehaviour
         Instantiate(_wallPrefab, _scenario.FirstWalls[0], Quaternion.identity);
 
 
-        // si le score = 8 alors on passe au niveau suivant
+        // si le score = 8 alors on change de scène ( niveau suivant )
         if (ScoreValue == 8)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            Debug.Log("Index de la scène active : ");
         }
 
         // on récup le score pour le niveau suivant
         _scenario.Score = ScoreValue;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    
+       
     }
- private void OnDestroy()
-{
-    //On supprime la clé une fois terminer.
+    private void OnDestroy()
+    {
+        //On supprime la clé une fois terminer.
     PlayerPrefs.DeleteKey("Score");
         
     }
