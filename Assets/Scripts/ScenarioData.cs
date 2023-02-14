@@ -7,8 +7,12 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class ScenarioData : ScriptableObject
 {
-   
-    public Vector3[] FirstWalls;
+   // sriptableOject pour les murs que je fait 
+    public Vector3[] Walls;
+    public Vector3[] Platforms;
+
+
+
     public int Score;
 
 
