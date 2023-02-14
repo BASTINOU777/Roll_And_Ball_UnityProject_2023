@@ -41,7 +41,8 @@ public class Player : MonoBehaviour
         {
             UpdateScore();
             Destroy(other.gameObject);
-
+            Vector3 position = new Vector3(Random.Range(-8f, 8f), 0f, Random.Range(-7f, 7f));
+            Instantiate(_wallPrefab, position, Quaternion.identity);
         }
     }
 
