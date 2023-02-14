@@ -8,9 +8,14 @@ public class Player : MonoBehaviour
 {
     private Rigidbody _rigidbody;
     private int ScoreValue = 0;
+    public float speed = 2f;
+    public float gravity = 20f;
+    Vector3  movement = Vector3.zero;
+
     [SerializeField] private TMP_Text _scoreText;
     [SerializeField] private GameObject _wallPrefab;
     [SerializeField] private ScenarioData _scenario;
+    //[SerializeField] LayerMask floor;
 
     //instancie la variable de type Scene
     Scene _scene;
@@ -24,15 +29,25 @@ public class Player : MonoBehaviour
         _scene = SceneManager.GetActiveScene();
         // je récup tous mes éléments
         Debug.Log("La scène s'appelle: " + _scene.name + " et son index est : " + _scene.buildIndex);
+        
+
     }
 
     void Update()
     {
-        if(Input.GetAxis("Horizontal") != 0f || Input.GetAxis("Vertical") != 0f) 
+        if (Input.GetAxis("Horizontal") != 0f || Input.GetAxis("Vertical") != 0f)
         {
             _rigidbody.AddForce(Input.GetAxis("Horizontal") * 0.5f, 0f, Input.GetAxis("Vertical") * 0.5f);
-            
         }
+
+        if (Input.GetKey(KeyCode.Space))
+            
+            //|| Physics.CheckSphere(transform.position, floor)
+        {
+            movement.y += gravity * Time.deltaTime;
+            Debug.Log("je suis dans l'espace");
+            _rigidbody.AddForce( 0f, 200f, 0f);
+        } 
     }
 
     private void OnTriggerEnter(Collider other)
@@ -56,6 +71,7 @@ public class Player : MonoBehaviour
             Vector3 position = new Vector3(Random.Range(-8f, 8f),0f, Random.Range(-7f, 7f));
             Instantiate(_wallPrefab, position, Quaternion.identity);
         }
+        
     }
     private void UpdateScore()
     {

@@ -200,6 +200,9 @@ MonoBehaviour:
   _scoreText: {fileID: 1785978938}
   _wallPrefab: {fileID: 5976587817977798414, guid: 9c7b488ca788cc7479a83641864c20a3, type: 3}
   _scenario: {fileID: 11400000, guid: 0e79a23ae885b384e81dcc83976cf774, type: 2}
+  floor:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!54 &379344880
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1055,6 +1058,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6752095258388995558, guid: 947c9a2789565b04b9ae2fe7eeea023f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6752095259713428905, guid: 947c9a2789565b04b9ae2fe7eeea023f, type: 3}
       propertyPath: m_Name
       value: Environnement
