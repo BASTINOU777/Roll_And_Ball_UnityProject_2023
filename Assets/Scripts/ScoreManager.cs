@@ -11,13 +11,13 @@ public class ScoreManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Player.OnScoreUpdate += UpdateScore;
+    
     }
 
     // désactive le score 
     private void OnDisable()
     {
-        Player.OnScoreUpdate -= UpdateScore;
+      
     }
 
 // Score à jour 

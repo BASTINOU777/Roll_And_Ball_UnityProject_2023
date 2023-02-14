@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _wallPrefab;
     [SerializeField] private ScenarioData _scenario;
 
+
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -22,7 +23,8 @@ public class Player : MonoBehaviour
     {
         if(Input.GetAxis("Horizontal") != 0f || Input.GetAxis("Vertical") != 0f) 
         {
-            _rigidbody.AddForce(Input.GetAxis("Horizontal") * 0.5f, 0f, Input.GetAxis("Vertical"));
+            _rigidbody.AddForce(Input.GetAxis("Horizontal") * 0.5f, 0f, Input.GetAxis("Vertical") * 0.5f);
+            
         }
     }
 
@@ -30,7 +32,9 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Target_Trigger"))
         {
+            UpdateScore();
             Destroy(other.gameObject);
+
         }
     }
 
@@ -38,6 +42,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Target"))
         {
+            UpdateScore();
             Destroy(collision.gameObject);
         }
     }
@@ -58,7 +63,12 @@ public class Player : MonoBehaviour
         // on récup le score pour le niveau suivant
         _scenario.Score = ScoreValue;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
+    
     }
-
+ private void OnDestroy()
+{
+    //On supprime la clé une fois terminer.
+    PlayerPrefs.DeleteKey("Score");
+        
+    }
 }
