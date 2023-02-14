@@ -11,12 +11,19 @@ public class Player : MonoBehaviour
     [SerializeField] private TMP_Text _scoreText;
     [SerializeField] private GameObject _wallPrefab;
     [SerializeField] private ScenarioData _scenario;
+
+    //instancie la variable de type Scene
+    Scene _scene;
     
 
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _scoreText.text = "Score : " + ScoreValue;
+        // méthode SceneManager
+        _scene = SceneManager.GetActiveScene();
+        // je récup tous mes éléments
+        Debug.Log("La scène s'appelle: " + _scene.name + " et son index est : " + _scene.buildIndex);
     }
 
     void Update()
@@ -57,14 +64,15 @@ public class Player : MonoBehaviour
         // si le score = 8 alors on change de scène ( niveau suivant )
         if (ScoreValue == 8)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            Debug.Log("Index de la scène active : ");
+            SceneManager.LoadScene("Level2");
+            Debug.Log("Index de la scène active : " + _scene.name);
         }
 
         // on récup le score pour le niveau suivant
         _scenario.Score = ScoreValue;
-       
+        // on incrémente 
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
     }
     private void OnDestroy()
     {
