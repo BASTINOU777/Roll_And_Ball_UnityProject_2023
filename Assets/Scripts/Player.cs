@@ -7,13 +7,14 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     private Rigidbody _rigidbody;
+    public float jumpForce = 200f;
+
     private int ScoreValue = 0;
-    public float speed = 2f;
-    public float gravity = 20f;
-    Vector3  movement = Vector3.zero;
+
 
     [SerializeField] private TMP_Text _scoreText;
     [SerializeField] private GameObject _wallPrefab;
+    [SerializeField] private GameObject _platformPrefab;
     [SerializeField] private ScenarioData _scenario;
     //[SerializeField] LayerMask floor;
 
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        //je récupère le Rigidboby du gameObjet
         _rigidbody = GetComponent<Rigidbody>();
         _scoreText.text = "Score : " + ScoreValue;
         // méthode SceneManager
@@ -39,17 +41,14 @@ public class Player : MonoBehaviour
         {
             _rigidbody.AddForce(Input.GetAxis("Horizontal") * 0.5f, 0f, Input.GetAxis("Vertical") * 0.5f);
         }
-
-        if (Input.GetKey(KeyCode.Space))
-            
-            //|| Physics.CheckSphere(transform.position, floor)
+        // si j'appuis sur la touche espace
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            movement.y += gravity * Time.deltaTime;
+            _rigidbody.AddForce(Vector3.up * jumpForce);
             Debug.Log("je suis dans l'espace");
-            _rigidbody.AddForce( 0f, 200f, 0f);
         } 
+        
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Target_Trigger"))
@@ -58,6 +57,13 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
             Vector3 position = new Vector3(Random.Range(-8f, 8f), 0f, Random.Range(-7f, 7f));
             Instantiate(_wallPrefab, position, Quaternion.identity);
+        }
+        // pour les gameObjet avec le tag "Platform"
+        if (other.gameObject.CompareTag("Platform"))
+        {
+            UpdateScore();
+            Destroy(other.gameObject);
+            Instantiate(_platformPrefab);
         }
     }
 
@@ -72,6 +78,33 @@ public class Player : MonoBehaviour
             Instantiate(_wallPrefab, position, Quaternion.identity);
         }
         
+//    }
+//    var objetSol : GameObject;      // C'est l'objet qui va percuter l'objet où est ce Script
+//static var IsGrounded : boolean = true;
+
+//function Start()
+//    {
+//        IsGrounded = true;
+//    }
+
+//    function OnTriggerEnter(objetSol : Collider)
+//    {
+
+//        if (objetSol.gameObject.tag == "Player")
+//        {
+//            IsGrounded = true;
+//            print("IsGrounded = true");
+//        }
+//    }
+
+//    function Update()
+//    {
+
+//        if (Input.GetButtonDown("Submit"))
+//        {
+//            IsGrounded = false;
+//            print("IsGrounded = false");
+//        }
     }
     private void UpdateScore()
     {
