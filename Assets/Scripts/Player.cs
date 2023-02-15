@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
     private Rigidbody _rigidbody;
     public float jumpForce = 200f;
+    public float speed = 0;
+    private float movementX;
+    private float movementY;
 
     private int ScoreValue = 0;
 
@@ -32,22 +36,35 @@ public class Player : MonoBehaviour
         // je récup tous mes éléments
         Debug.Log("La scène s'appelle: " + _scene.name + " et son index est : " + _scene.buildIndex);
         
-
     }
 
     void Update()
     {
-        if (Input.GetAxis("Horizontal") != 0f || Input.GetAxis("Vertical") != 0f)
-        {
-            _rigidbody.AddForce(Input.GetAxis("Horizontal") * 0.5f, 0f, Input.GetAxis("Vertical") * 0.5f);
-        }
-        // si j'appuis sur la touche espace
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _rigidbody.AddForce(Vector3.up * jumpForce);
-            Debug.Log("je suis dans l'espace");
-        } 
-        
+        //if (Input.GetAxis("Horizontal") != 0f || Input.GetAxis("Vertical") != 0f)
+        //{
+        //    _rigidbody.AddForce(Input.GetAxis("Horizontal") * 0.5f, 0f, Input.GetAxis("Vertical") * 0.5f);
+        _rigidbody.AddForce(movementX * 3f, 0f, movementY * 3f);
+        //}
+        //// si j'appuis sur la touche espace
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    _rigidbody.AddForce(Vector3.up * jumpForce);
+        //    Debug.Log("je suis dans l'espace");
+        //}     
+    }
+    void OnMove(InputValue movementValue)
+    {
+        Debug.Log("je suis dans l'espace" + movementValue.Get<Vector2>());
+        Vector2 movementVector = movementValue.Get<Vector2>();
+
+        movementX = movementVector.x;
+        movementY = movementVector.y;
+    }
+    private void FixedUpdate()
+    {
+        Vector3 movement = new Vector3(movementX, 0.0f, movementY);
+
+        _rigidbody.AddForce(movement * speed);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -63,9 +80,10 @@ public class Player : MonoBehaviour
         {
             UpdateScore();
             Destroy(other.gameObject);
-            Instantiate(_platformPrefab);
+            Instantiate(_platformPrefab, _scenario.Platforms[0], Quaternion.identity);
         }
     }
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -77,34 +95,34 @@ public class Player : MonoBehaviour
             Vector3 position = new Vector3(Random.Range(-8f, 8f),0f, Random.Range(-7f, 7f));
             Instantiate(_wallPrefab, position, Quaternion.identity);
         }
-        
-//    }
-//    var objetSol : GameObject;      // C'est l'objet qui va percuter l'objet où est ce Script
-//static var IsGrounded : boolean = true;
 
-//function Start()
-//    {
-//        IsGrounded = true;
-//    }
+        //    }
+        //    private groundObjet = GameObject;      // C'est l'objet qui va percuter l'objet où est ce Script
+        //static var IsGrounded : boolean = true;
 
-//    function OnTriggerEnter(objetSol : Collider)
-//    {
+        //function Start()
+        //    {
+        //        IsGrounded = true;
+        //    }
 
-//        if (objetSol.gameObject.tag == "Player")
-//        {
-//            IsGrounded = true;
-//            print("IsGrounded = true");
-//        }
-//    }
+        //    function OnTriggerEnter(objetSol : Collider)
+        //    {
 
-//    function Update()
-//    {
+        //        if (objetSol.gameObject.tag == "Player")
+        //        {
+        //            IsGrounded = true;
+        //            print("IsGrounded = true");
+        //        }
+        //    }
 
-//        if (Input.GetButtonDown("Submit"))
-//        {
-//            IsGrounded = false;
-//            print("IsGrounded = false");
-//        }
+        //    function Update()
+        //    {
+
+        //        if (Input.GetButtonDown("Submit"))
+        //        {
+        //            IsGrounded = false;
+        //            print("IsGrounded = false");
+        //        }
     }
     private void UpdateScore()
     {
