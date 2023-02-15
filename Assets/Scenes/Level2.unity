@@ -1122,6 +1122,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Target Trigger
       objectReference: {fileID: 0}
+    - target: {fileID: 6784684706390162889, guid: b2861de9f7d2d824ea101d66c4a5c266, type: 3}
+      propertyPath: m_TagString
+      value: Platform
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2861de9f7d2d824ea101d66c4a5c266, type: 3}
 --- !u!1001 &5348223476614112676

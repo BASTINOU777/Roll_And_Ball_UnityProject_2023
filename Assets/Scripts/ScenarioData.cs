@@ -9,7 +9,8 @@ public class ScenarioData : ScriptableObject
 {
    // sriptableOject pour les murs que je fait 
     public Vector3[] Walls;
-    public Vector3[] Platforms;
+    //public Vector3[] Platforms;
+    public List<Vector3> position;
 
 
 

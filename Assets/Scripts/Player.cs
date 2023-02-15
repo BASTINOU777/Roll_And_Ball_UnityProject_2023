@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     public float speed = 0;
     private float movementX;
     private float movementY;
-
     private int ScoreValue = 0;
 
 
@@ -76,12 +75,20 @@ public class Player : MonoBehaviour
             Instantiate(_wallPrefab, position, Quaternion.identity);
         }
         // pour les gameObjet avec le tag "Platform"
+        //if (other.gameObject.CompareTag("Platform"))
+        //{
+        //    UpdateScore();
+        //    Destroy(other.gameObject);
+        //    Instantiate(_platformPrefab, _scenario.Platforms[0], Quaternion.identity);
         if (other.gameObject.CompareTag("Platform"))
         {
-            UpdateScore();
-            Destroy(other.gameObject);
-            Instantiate(_platformPrefab, _scenario.Platforms[0], Quaternion.identity);
+                UpdateScore();
+                _scenario.position.Add(other.transform.position);
+                Instantiate(_platformPrefab, other.transform.position, Quaternion.identity);
+                Destroy(other.gameObject);
         }
+
+
     }
 
 
