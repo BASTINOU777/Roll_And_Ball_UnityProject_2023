@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
     private float movementX;
     private float movementY;
     private int ScoreValue = 0;
-    private int PlatformPop = -1;
+    private int platformIndex = 0;
+    
 
 
 
@@ -21,7 +22,6 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _wallPrefab;
     [SerializeField] private GameObject _platformPrefab;
     [SerializeField] private ScenarioData _scenario;
-    //[SerializeField] LayerMask floor;
 
     //instancie la variable de type Scene
     Scene _scene;
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
         //je récupère le Rigidboby du gameObjet
         _rigidbody = GetComponent<Rigidbody>();
         _scoreText.text = "Score : " + ScoreValue;
-        // méthode SceneManager
+        // méthode SceneManager.GetActiveScene stocké dans une variable
         _scene = SceneManager.GetActiveScene();
         // je récup tous mes éléments
         Debug.Log("La scène s'appelle: " + _scene.name + " et son index est : " + _scene.buildIndex);
@@ -85,11 +85,19 @@ public class Player : MonoBehaviour
         //    Instantiate(_platformPrefab, _scenario.Platforms[0], Quaternion.identity);
         else if (other.gameObject.CompareTag("Platform"))
         {
-            PlatformPop++;
             UpdateScore();
             Destroy(other.gameObject);
-            Instantiate(_platformPrefab, _scenario.Platform[PlatformPop], Quaternion.identity);
-  
+            Instantiate(_platformPrefab, _scenario.Platform[platformIndex], Quaternion.identity);
+            platformIndex++;
+            if (platformIndex >= _scenario.Platform.Length)
+            {
+                platformIndex = 0;
+            }
+
+            //Debug.Log("je suis dans la boucle : " + );
+
+
+
         }
     }
 
@@ -150,15 +158,15 @@ public class Player : MonoBehaviour
         }
 
         // on récup le score pour le niveau suivant
-        //_scenario.Score = ScoreValue;
+        _scenario.Score = ScoreValue;
         // on incrémente 
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //SceneManager.LoadScene();
 
     }
     private void OnDestroy()
     {
-        //On supprime la clé une fois terminer.
-    //PlayerPrefs.DeleteKey("Score");
-        
+     //On supprime la clé une fois terminer.
+    PlayerPrefs.DeleteKey("Score");
+
     }
 }
