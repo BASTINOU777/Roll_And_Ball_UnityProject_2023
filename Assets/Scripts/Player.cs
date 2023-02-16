@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     private float movementX;
     private float movementY;
     private int ScoreValue = 0;
+    private int PlatformPop = -1;
+
 
 
     [SerializeField] private TMP_Text _scoreText;
@@ -34,8 +36,8 @@ public class Player : MonoBehaviour
         _scene = SceneManager.GetActiveScene();
         // je récup tous mes éléments
         Debug.Log("La scène s'appelle: " + _scene.name + " et son index est : " + _scene.buildIndex);
-        
-    }
+
+}
 
     void Update()
     {
@@ -69,6 +71,7 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Target_Trigger"))
         {
+            Debug.Log("je suis dans  le triger:");
             UpdateScore();
             Destroy(other.gameObject);
             Vector3 position = new Vector3(Random.Range(-8f, 8f), 0f, Random.Range(-7f, 7f));
@@ -80,16 +83,17 @@ public class Player : MonoBehaviour
         //    UpdateScore();
         //    Destroy(other.gameObject);
         //    Instantiate(_platformPrefab, _scenario.Platforms[0], Quaternion.identity);
-        if (other.gameObject.CompareTag("Platform"))
+        else if (other.gameObject.CompareTag("Platform"))
         {
-                UpdateScore();
-                _scenario.position.Add(other.transform.position);
-                Instantiate(_platformPrefab, other.transform.position, Quaternion.identity);
-                Destroy(other.gameObject);
+            PlatformPop++;
+            UpdateScore();
+            Destroy(other.gameObject);
+            Instantiate(_platformPrefab, _scenario.Platform[PlatformPop], Quaternion.identity);
+  
         }
-
-
     }
+
+    
 
 
     private void OnCollisionEnter(Collision collision)
@@ -102,7 +106,6 @@ public class Player : MonoBehaviour
             Vector3 position = new Vector3(Random.Range(-8f, 8f),0f, Random.Range(-7f, 7f));
             Instantiate(_wallPrefab, position, Quaternion.identity);
         }
-
         //    }
         //    private groundObjet = GameObject;      // C'est l'objet qui va percuter l'objet où est ce Script
         //static var IsGrounded : boolean = true;
@@ -134,7 +137,9 @@ public class Player : MonoBehaviour
     private void UpdateScore()
     {
         ScoreValue++;
+        // je crée un score en string 
         PlayerPrefs.SetString("Score", "Score : " + ScoreValue.ToString());
+        // je le récupère 
         _scoreText.text = PlayerPrefs.GetString("Score");
 
         // si le score = 8 alors on change de scène ( niveau suivant )
@@ -145,7 +150,7 @@ public class Player : MonoBehaviour
         }
 
         // on récup le score pour le niveau suivant
-        _scenario.Score = ScoreValue;
+        //_scenario.Score = ScoreValue;
         // on incrémente 
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
@@ -153,7 +158,7 @@ public class Player : MonoBehaviour
     private void OnDestroy()
     {
         //On supprime la clé une fois terminer.
-    PlayerPrefs.DeleteKey("Score");
+    //PlayerPrefs.DeleteKey("Score");
         
     }
 }

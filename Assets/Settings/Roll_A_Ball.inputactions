@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Input",
+                    "type": "Button",
+                    "id": "1f80b057-aee5-44ff-b5e2-2f0def612264",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -271,6 +280,17 @@
                     "processors": "",
                     "groups": "Gamepad;Touch",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "43ee682c-2416-45d7-a847-ddaa02525bd9",
+                    "path": "<XRController>{LeftHand}/isTracked",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": "XR",
+                    "action": "Input",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
