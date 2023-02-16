@@ -11,3 +11,8 @@ Utilisation des PlayerPrefs
 
 ## ScreenShot in construction :
 ![Capture d'écran_20230215_163321](https://user-images.githubusercontent.com/101596380/219078197-f6ecf6f8-3ebe-4f97-ac91-28e4e358d54a.png)
+![Capture d'écran_20230216_123112](https://user-images.githubusercontent.com/101596380/219353572-04afce6c-2086-4195-ab1a-dccceb3de5f9.png)
+
+## Reste à faire/ En cours :
+Le score doit être conservé d'une scène à l'autre. 
+Configurer l'input Action Joystick dans la scène 1. 
