@@ -16,3 +16,4 @@ Utilisation des PlayerPrefs
 ## Reste à faire/ En cours :
 Le score doit être conservé d'une scène à l'autre. 
 Configurer l'input Action Joystick dans la scène 1. 
+Ajouter du Game design. 
