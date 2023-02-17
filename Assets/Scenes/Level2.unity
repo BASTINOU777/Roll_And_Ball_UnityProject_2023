@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000004, guid: a3eac5cf6ccfbab49bb8b7caf975d7ac, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -258,8 +258,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40aef21d5be97044aa9e94706c71302f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 200
   speed: 0
+  jumpForce: 200
   _scoreText: {fileID: 1785978938}
   _wallPrefab: {fileID: 5976587817977798414, guid: 9c7b488ca788cc7479a83641864c20a3, type: 3}
   _platformPrefab: {fileID: 1075469557576206891, guid: 0abb06dd034d8d243b65a11df2d302f5, type: 3}

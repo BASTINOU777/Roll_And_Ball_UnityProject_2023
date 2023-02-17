@@ -275,10 +275,10 @@
                 {
                     "name": "",
                     "id": "8629958b-ac40-469e-a205-800a7a1e64dc",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad;Touch",
+                    "groups": "Gamepad;Touch;Keyboard&Mouse",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
