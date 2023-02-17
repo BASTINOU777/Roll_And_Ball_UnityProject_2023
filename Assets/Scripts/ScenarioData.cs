@@ -14,11 +14,11 @@ public class ScenarioData : ScriptableObject
 
 
 
-    public int Score;
+    //public int Score;
 
 
-    public void OnEnable()
-    {
-        Score = 0;
-    }
+    //public void OnEnable()
+    //{
+    //    Score = 0;
+    //}
 }

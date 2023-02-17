@@ -326,7 +326,7 @@ MonoBehaviour:
   speed: 0
   _scoreText: {fileID: 1785978938}
   _wallPrefab: {fileID: 5976587817977798414, guid: 9c7b488ca788cc7479a83641864c20a3, type: 3}
-  _platformPrefab: {fileID: 0}
+  _platformPrefab: {fileID: 1075469557576206891, guid: 0abb06dd034d8d243b65a11df2d302f5, type: 3}
   _scenario: {fileID: 11400000, guid: 0e79a23ae885b384e81dcc83976cf774, type: 2}
 --- !u!54 &379344880
 Rigidbody:
