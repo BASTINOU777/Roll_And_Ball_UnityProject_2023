@@ -4,33 +4,41 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.Audio;
 
 public class Player : MonoBehaviour
 {
     //MOVEMENT
     private Rigidbody _rigidbody;
-    
     public float speed = 0;
     private float movementX;
     private float movementY;
+    private bool _touchGround;
 
     //SCORE
     private int ScoreValue =0;
-   
 
+    //AUDIO
+    private AudioSource _audioPlayer;
+
+    //GAME OBJET
     private int platformIndex = 0;
 
 
+    //j'instancie la variable de type Scene
+    Scene _scene;
 
     [SerializeField] public float jumpForce = 200f;
     [SerializeField] private TMP_Text _scoreText;
     [SerializeField] private GameObject _wallPrefab;
     [SerializeField] private GameObject _platformPrefab;
-    [SerializeField] private ScenarioData _scenario;
+    [SerializeField] private ScenarioData _scenario; 
+    [SerializeField] private LayerMask LayerGround = -1;
+    [SerializeField] private AudioClip _audioJump = null;
+    [SerializeField] private GameObject _verifTouchGround = null;
+    [SerializeField] private float _distanceOfGround = 0.1f;
 
-    //instancie la variable de type Scene
-    Scene _scene;
-    
+
 
     void Start()
     {
@@ -38,20 +46,23 @@ public class Player : MonoBehaviour
         //je récupère le Rigidboby du gameObjet
         _rigidbody = GetComponent<Rigidbody>();
 
+        //je récupère mon composant AudioSource
+        _audioPlayer = GetComponent<AudioSource>();
+
         _scoreText.text = PlayerPrefs.GetString("Score");
         ScoreValue = PlayerPrefs.GetInt("ScoreValue");
 
-        // je récup tous mes éléments
+        // je vérifie sur quelle scène je suis
         Debug.Log("La scène s'appelle: " + _scene.name + " et son index est : " + _scene.buildIndex);
     }
 
     void Update()
     {
-        //if (Input.GetAxis("Horizontal") != 0f || Input.GetAxis("Vertical") != 0f)
-        //{
-        //    _rigidbody.AddForce(Input.GetAxis("Horizontal") * 0.5f, 0f, Input.GetAxis("Vertical") * 0.5f);
+        // déplacement au joystick
         _rigidbody.AddForce(movementX * 3f, 0f, movementY * 3f);
-         
+        //je vérifie si le personnage touche le sol avec un GameObject qui est au pied du personnage.
+        //_touchGround = Physics.CheckSphere( _verifTouchGround.position, _distanceOfGround, LayerGround );
+
     }
 
     void OnMove(InputValue movementValue)
@@ -66,6 +77,9 @@ public class Player : MonoBehaviour
     { 
         Debug.Log("je saute");
         _rigidbody.AddForce(new Vector3(0f,jumpForce, 0f));
+        // cela me permet de jouer le son que je demande une seule fois 
+        _audioPlayer.PlayOneShot(_audioJump);
+
     }
 
     private void FixedUpdate()
@@ -73,6 +87,7 @@ public class Player : MonoBehaviour
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
         _rigidbody.AddForce(movement * speed);
+
     }
 
     private void OnTriggerEnter(Collider other)
