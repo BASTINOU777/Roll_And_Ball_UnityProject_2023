@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     [SerializeField] private ScenarioData _scenario; 
     [SerializeField] private LayerMask LayerGround = -1;
     [SerializeField] private AudioClip _audioJump = null;
+    [SerializeField] private AudioClip _audioCollisionTriger = null;
     [SerializeField] private GameObject _verifTouchGround = null;
     [SerializeField] private float _distanceOfGround = 0.1f;
 
@@ -99,11 +100,13 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
             Vector3 position = new Vector3(Random.Range(-8f, 8f), 0f, Random.Range(-7f, 7f));
             Instantiate(_wallPrefab, position, Quaternion.identity);
+            _audioPlayer.PlayOneShot(_audioCollisionTriger);
         }
         else if (other.gameObject.CompareTag("Platform"))
         {
             UpdateScore();
             Destroy(other.gameObject);
+            _audioPlayer.PlayOneShot(_audioCollisionTriger);
             Instantiate(_platformPrefab, _scenario.Platform[platformIndex], Quaternion.identity);
             platformIndex++;
             if (platformIndex >= _scenario.Platform.Length)
@@ -119,9 +122,11 @@ public class Player : MonoBehaviour
         {
             UpdateScore();
             Destroy(collision.gameObject);
+            _audioPlayer.PlayOneShot(_audioCollisionTriger);
             //j'instancie une position random à mon game object du mur (_wallPrefb)
             Vector3 position = new Vector3(Random.Range(-8f, 8f),0f, Random.Range(-7f, 7f));
             Instantiate(_wallPrefab, position, Quaternion.identity);
+            
         }
     }
     private void UpdateScore()

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2a4d6057933355f429001a96bd1463f7
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: dda12f74ff9116a42b23482252b2c482, type: 3}
+  _instancesCopy:
+  - {fileID: 11400000, guid: 209842e3075c90d4b98d16bcac2209f9, type: 2}
+  _fileAsset: {instanceID: 0}
+  _assetPath: Assets/Substances/golden_alum.sbsar

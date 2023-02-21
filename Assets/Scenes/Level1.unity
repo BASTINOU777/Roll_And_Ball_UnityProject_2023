@@ -332,6 +332,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   _audioJump: {fileID: 8300000, guid: 186c13be0abebcd4cb420ea07949909a, type: 3}
+  _audioCollisionTriger: {fileID: 8300000, guid: 3bdfd5613c3453c42b5016211acad72b, type: 3}
   _verifTouchGround: {fileID: 836584049}
   _distanceOfGround: 0.1
 --- !u!54 &379344880
