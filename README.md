@@ -13,7 +13,11 @@ Utilisation des PlayerPrefs
 ## Ajouter du Game design.
 ## ScreenShot in construction :
 ## Jeu fini à 82% 🔋 :
-Configurer l'input manager
+Reste à configurer l'Input System avec le Touch Samples
+Reste à paufiner l'apirition des plateformes dans l'arène 2
+Reste à finir la typo du score 
+Reste à faire un trailler 
+
 ![Capture d'écran_20230222_141849](https://user-images.githubusercontent.com/101596380/220631922-c3bb301f-f644-4846-922d-4098187be1da.png)
 ![Capture d'écran_20230222_141917](https://user-images.githubusercontent.com/101596380/220631967-22c7446f-dd30-4cc2-bc49-95c988372326.png)
 ![Capture d'écran_20230222_141929](https://user-images.githubusercontent.com/101596380/220631985-91717fba-bd3a-4359-8b6f-bffddf47a62e.png)
