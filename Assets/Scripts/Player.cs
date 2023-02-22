@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
         {
             UpdateScore();
             Destroy(other.gameObject);
-            _audioPlayer.PlayOneShot(_audioCollisionTriger);
+            //_audioPlayer.PlayOneShot(_audioCollisionTriger);
             Instantiate(_platformPrefab, _scenario.Platform[platformIndex], Quaternion.identity);
             platformIndex++;
             if (platformIndex >= _scenario.Platform.Length)
