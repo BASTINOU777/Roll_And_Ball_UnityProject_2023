@@ -7,16 +7,14 @@ public class Menu : MonoBehaviour
 {
     public void StartScreen()
     {
-        SceneManager.LoadScene("Level - 1");
-    }
-    public void QuitGame()
-    {
-        Application.Quit();
+        SceneManager.LoadScene("Level1");
+        Debug.Log("je suis dans chargement");
     }
 
-    public void Scene1()
-    {
-        SceneManager.LoadScene("StartScreen 1");
-    }
+    //public void Scene1()
+    //{
+    //    SceneManager.LoadScene("StartScreen 1");
+        
+    //}
 }
 
