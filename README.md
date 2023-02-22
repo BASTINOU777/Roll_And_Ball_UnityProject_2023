@@ -12,6 +12,8 @@ Utilisation des PlayerPrefs
 ## Configurer l'input Action Joystick et la gestion sur Android
 ## Ajouter du Game design.
 ## ScreenShot in construction :
+## Jeu fini à 82% 🔋 :
+Configurer l'input manager
 ![Capture d'écran_20230222_141849](https://user-images.githubusercontent.com/101596380/220631922-c3bb301f-f644-4846-922d-4098187be1da.png)
 ![Capture d'écran_20230222_141917](https://user-images.githubusercontent.com/101596380/220631967-22c7446f-dd30-4cc2-bc49-95c988372326.png)
 ![Capture d'écran_20230222_141929](https://user-images.githubusercontent.com/101596380/220631985-91717fba-bd3a-4359-8b6f-bffddf47a62e.png)
@@ -19,6 +21,5 @@ Utilisation des PlayerPrefs
 ![Capture d'écran_20230215_163321](https://user-images.githubusercontent.com/101596380/219078197-f6ecf6f8-3ebe-4f97-ac91-28e4e358d54a.png)
 ![Capture d'écran_20230216_123112](https://user-images.githubusercontent.com/101596380/219353572-04afce6c-2086-4195-ab1a-dccceb3de5f9.png)
 
-## Jeu fini à 82% 🔋 :
-Configurer l'input manager. 
+. 
 
